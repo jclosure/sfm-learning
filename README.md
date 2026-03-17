@@ -26,7 +26,14 @@ This is intentionally simple and readable. The goal is understanding the pipelin
 ```bash
 cd ~/projects/sfm-learning
 conda env create -f environment.yml
-conda activate sfm-learning
+conda activate datascience
+```
+
+If the env already exists, refresh deps with:
+
+```bash
+cd ~/projects/sfm-learning
+conda run -n datascience pip install -e '.[dev]'
 ```
 
 ## CLI usage

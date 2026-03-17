@@ -1,4 +1,4 @@
-name: sfm-learning
+name: datascience
 channels:
   - conda-forge
 dependencies:
