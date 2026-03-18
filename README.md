@@ -110,3 +110,11 @@ Good reconstructions need:
 - Add track management and stronger outlier pruning
 - Add dense reconstruction stage with OpenMVS/Open3D
 - Add camera frustum visualization
+
+## Blog deep dive
+
+- [sfm-learning: A Transparent, Incremental SfM Pipeline You Can Actually Read](blog/2026-03-17-sfm-learning-pipeline-deep-dive.md)
+
+Algorithm-focused diagram:
+
+![Algorithm-focused SfM pipeline](assets/sfm-pipeline-algorithms.png)
