@@ -113,4 +113,4 @@ Good reconstructions need:
 
 Algorithm-focused diagram:
 
-![Algorithm-focused SfM pipeline](assets/sfm-pipeline-algorithms.png)
+![Algorithm-focused SfM pipeline](assets/sfm-pipeline-algorithms.svg)

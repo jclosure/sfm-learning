@@ -1,0 +1,116 @@
+<svg width="1600" height="980" viewBox="0 0 1600 980" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1600" y2="980" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#070B17"/>
+      <stop offset="1" stop-color="#0E1730"/>
+    </linearGradient>
+    <linearGradient id="card" x1="0" y1="0" x2="0" y2="1">
+      <stop stop-color="#17223F"/>
+      <stop offset="1" stop-color="#121B33"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="160%">
+      <feDropShadow dx="0" dy="5" stdDeviation="7" flood-color="#000" flood-opacity="0.35"/>
+    </filter>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#76C7FF"/>
+    </marker>
+    <marker id="arrowLoop" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#FFC96A"/>
+    </marker>
+    <style>
+      .title { font: 800 52px Inter, Segoe UI, Arial, sans-serif; fill: #F6FAFF; }
+      .subtitle { font: 500 22px Inter, Segoe UI, Arial, sans-serif; fill: #9AB3D4; }
+      .stepTitle { font: 700 24px Inter, Segoe UI, Arial, sans-serif; fill: #EAF3FF; }
+      .stepBody { font: 500 18px Inter, Segoe UI, Arial, sans-serif; fill: #AFC6E5; }
+      .legendTitle { font: 700 26px Inter, Segoe UI, Arial, sans-serif; fill: #EAF3FF; }
+      .legendBody { font: 500 19px Inter, Segoe UI, Arial, sans-serif; fill: #BCD1EC; }
+      .note { font: 600 19px Inter, Segoe UI, Arial, sans-serif; fill: #FFD78E; }
+      .mono { font: 600 19px JetBrains Mono, Menlo, Consolas, monospace; fill: #8BD8FF; }
+    </style>
+  </defs>
+
+  <rect x="0" y="0" width="1600" height="980" fill="url(#bg)"/>
+
+  <text x="70" y="90" class="title">sfm-learning, Algorithm Pipeline</text>
+  <text x="70" y="130" class="subtitle">Incremental Structure-from-Motion, rendered as explicit geometric stages</text>
+
+  <!-- Top row -->
+  <g filter="url(#shadow)">
+    <rect x="70" y="190" rx="16" ry="16" width="280" height="130" fill="url(#card)" stroke="#76C7FF" stroke-width="2"/>
+    <text x="92" y="235" class="stepTitle">1. Input Sequence</text>
+    <text x="92" y="268" class="stepBody">Overlapping views</text>
+    <text x="92" y="296" class="stepBody">(60-80% overlap)</text>
+
+    <rect x="390" y="190" rx="16" ry="16" width="280" height="130" fill="url(#card)" stroke="#76C7FF" stroke-width="2"/>
+    <text x="412" y="235" class="stepTitle">2. Features</text>
+    <text x="412" y="268" class="stepBody">SIFT or ORB keypoints</text>
+    <text x="412" y="296" class="stepBody">with descriptors</text>
+
+    <rect x="710" y="190" rx="16" ry="16" width="280" height="130" fill="url(#card)" stroke="#76C7FF" stroke-width="2"/>
+    <text x="732" y="235" class="stepTitle">3. Matching</text>
+    <text x="732" y="268" class="stepBody">BF KNN + Lowe ratio</text>
+    <text x="732" y="296" class="stepBody">test filtering</text>
+
+    <rect x="1030" y="190" rx="16" ry="16" width="280" height="130" fill="url(#card)" stroke="#76C7FF" stroke-width="2"/>
+    <text x="1052" y="235" class="stepTitle">4. Two-view Geometry</text>
+    <text x="1052" y="268" class="stepBody">Essential matrix</text>
+    <text x="1052" y="296" class="stepBody">RANSAC + recoverPose</text>
+  </g>
+
+  <!-- Bottom row -->
+  <g filter="url(#shadow)">
+    <rect x="1030" y="390" rx="16" ry="16" width="280" height="130" fill="url(#card)" stroke="#76C7FF" stroke-width="2"/>
+    <text x="1052" y="435" class="stepTitle">5. Initialize Map</text>
+    <text x="1052" y="468" class="stepBody">Triangulate seed points</text>
+    <text x="1052" y="496" class="stepBody">from best pair</text>
+
+    <rect x="710" y="390" rx="16" ry="16" width="280" height="130" fill="url(#card)" stroke="#76C7FF" stroke-width="2"/>
+    <text x="732" y="435" class="stepTitle">6. Register Camera</text>
+    <text x="732" y="468" class="stepBody">PnP + RANSAC on</text>
+    <text x="732" y="496" class="stepBody">2D-3D correspondences</text>
+
+    <rect x="390" y="390" rx="16" ry="16" width="280" height="130" fill="url(#card)" stroke="#76C7FF" stroke-width="2"/>
+    <text x="412" y="435" class="stepTitle">7. Grow Tracks</text>
+    <text x="412" y="468" class="stepBody">Attach inlier obs</text>
+    <text x="412" y="496" class="stepBody">and triangulate new 3D</text>
+
+    <rect x="70" y="390" rx="16" ry="16" width="280" height="130" fill="url(#card)" stroke="#76C7FF" stroke-width="2"/>
+    <text x="92" y="435" class="stepTitle">8. Bundle Adjust</text>
+    <text x="92" y="468" class="stepBody">Sparse global BA</text>
+    <text x="92" y="496" class="stepBody">Huber robust loss</text>
+  </g>
+
+  <!-- Arrows -->
+  <line x1="350" y1="255" x2="390" y2="255" stroke="#76C7FF" stroke-width="4" marker-end="url(#arrow)"/>
+  <line x1="670" y1="255" x2="710" y2="255" stroke="#76C7FF" stroke-width="4" marker-end="url(#arrow)"/>
+  <line x1="990" y1="255" x2="1030" y2="255" stroke="#76C7FF" stroke-width="4" marker-end="url(#arrow)"/>
+
+  <line x1="1170" y1="320" x2="1170" y2="390" stroke="#76C7FF" stroke-width="4" marker-end="url(#arrow)"/>
+
+  <line x1="1030" y1="455" x2="990" y2="455" stroke="#76C7FF" stroke-width="4" marker-end="url(#arrow)"/>
+  <line x1="710" y1="455" x2="670" y2="455" stroke="#76C7FF" stroke-width="4" marker-end="url(#arrow)"/>
+  <line x1="390" y1="455" x2="350" y2="455" stroke="#76C7FF" stroke-width="4" marker-end="url(#arrow)"/>
+
+  <!-- Iteration loop -->
+  <path d="M 200 540 C 190 690, 1060 700, 1120 545" stroke="#FFC96A" stroke-width="4" fill="none" stroke-dasharray="10 10" marker-end="url(#arrowLoop)"/>
+  <text x="390" y="710" class="note">Incremental loop: register next view → triangulate new structure → refine globally</text>
+
+  <!-- Math panel -->
+  <g filter="url(#shadow)">
+    <rect x="70" y="760" rx="16" ry="16" width="1240" height="170" fill="#111A31" stroke="#3E5F8F" stroke-width="2"/>
+  </g>
+
+  <text x="95" y="803" class="legendTitle">Core objective (bundle adjustment)</text>
+  <text x="95" y="838" class="mono">min Σ || π(K(Rᵢ Xⱼ + tᵢ)) − xᵢⱼ ||²   with robust Huber loss</text>
+  <text x="95" y="878" class="legendBody">where Rᵢ,tᵢ are camera extrinsics, Xⱼ are 3D points, and xᵢⱼ are observed 2D keypoints.</text>
+
+  <!-- Export node -->
+  <g filter="url(#shadow)">
+    <rect x="1330" y="760" rx="16" ry="16" width="220" height="170" fill="#12233A" stroke="#79E0B0" stroke-width="2"/>
+  </g>
+  <text x="1350" y="805" class="stepTitle" fill="#DDFCEF">Output</text>
+  <text x="1350" y="843" class="stepBody" fill="#BEEFD8">Camera poses</text>
+  <text x="1350" y="872" class="stepBody" fill="#BEEFD8">Sparse cloud</text>
+  <text x="1350" y="901" class="stepBody" fill="#BEEFD8">PLY export</text>
+  <line x1="1310" y1="845" x2="1330" y2="845" stroke="#79E0B0" stroke-width="4" marker-end="url(#arrow)"/>
+</svg>
