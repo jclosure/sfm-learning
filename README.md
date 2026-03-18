@@ -36,6 +36,26 @@ cd ~/projects/sfm-learning
 conda run -n datascience pip install -e '.[dev]'
 ```
 
+## Auto-activation (direnv)
+
+This repo includes a `.envrc` that auto-activates `datascience` when you `cd` here.
+
+One-time machine setup:
+
+```bash
+brew install direnv
+# ensure this exists in ~/.zshrc:
+# eval "$(direnv hook zsh)"
+source ~/.zshrc
+```
+
+One-time repo trust:
+
+```bash
+cd ~/projects/sfm-learning
+direnv allow
+```
+
 ## CLI usage
 
 ```bash
