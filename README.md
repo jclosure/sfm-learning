@@ -2,6 +2,8 @@
 
 A learning-focused **image-to-3D sparse reconstruction** project implementing a classic incremental SfM pipeline:
 
+![SfM Learning Demo](assets/sfm-learning-demo.jpg)
+
 1. Feature extraction
 2. Matching
 3. Geometric verification
