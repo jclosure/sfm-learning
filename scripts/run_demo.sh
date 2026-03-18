@@ -8,6 +8,6 @@ fi
 
 IMAGE_DIR="$1"
 mkdir -p outputs
-sfm-learning reconstruct "$IMAGE_DIR" -o outputs/sparse.ply
+sfm-learning "$IMAGE_DIR" -o outputs/sparse.ply
 
 echo "Wrote outputs/sparse.ply"

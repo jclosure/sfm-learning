@@ -59,7 +59,7 @@ direnv allow
 ## CLI usage
 
 ```bash
-sfm-learning reconstruct ./data/images -o outputs/sparse.ply
+sfm-learning ./data/images -o outputs/sparse.ply
 ```
 
 Options:
